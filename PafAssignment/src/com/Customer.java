@@ -1,5 +1,8 @@
 package com;
 
+import com.CustomersAPI;
+import com.CustomerService;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,15 +58,17 @@ public class Customer {
 		 preparedStmt.execute();
 		 con.close();
 
-		 output = "Customer details inserted successfully"; 
+		 String newCustomers = readCustomers(); 
+		 output = "{\"status\":\"success\", \"data\": \"" + 
+		 newCustomers + "\"}"; 
 		 } 
-		catch (Exception e) 
+		 catch (Exception e) 
 		 { 
-		 output = "Error while inserting...please try again later"; 
+		 output = "{\"status\":\"error\", \"data\": \"Error while inserting the customer.\"}"; 
 		 System.err.println(e.getMessage()); 
 		 } 
-		return output; 
-		}
+		 return output; 
+		 }
 	
 	//retrieve query
 	//retrieving records into the grid view
@@ -101,8 +106,7 @@ public class Customer {
 		 String customerPassword = rs.getString("customerPassword");
 		 
 		// Add into the html table
-		 output += "<tr><td>" + customerID + "</td>"; 
-		 output += "<td>" + customerName + "</td>"; 
+		 output += "<tr><td><input id='hidcustomerIDUpdate' name = 'hidcustomerIDUpdate' type='hidden' value='" + customerID +"'>" +  customerName + "</td>";
 		 output += "<td>" + customerPhone + "</td>";
 		 output += "<td>" + customerEmail + "</td>";
 		 output += "<td>" + customerUsername + "</td>";
@@ -111,12 +115,10 @@ public class Customer {
 		 
 		 //creating action buttons
 		 output += "<td><input name='btnUpdate' " 
-				 + " type='button' value='Update'></td>"
-				 + "<td><form method='post' action='CustomerRegister.jsp'>"
-				 + "<input name='btnRemove' " 
-				 + " type='submit' value='Delete'>"
-				 + "<input name='customerID' type='hidden' " 
-				 + " value='" + customerID + "'>" + "</form></td></tr>"; 
+				 + " type='button' value='Update'class='btnUpdate btn btn-secondary' data-customerid='" + customerID + "'></td>"
+				 + "<td><form method='post' action='customers.jsp'>"
+				 + "<input name='btnDelete' " 
+				 + " type='button' value='Delete' class='btn btn-danger' data-customerid='" + customerID + "'></td></tr>"; 
 		 
 		
 	}
@@ -164,15 +166,17 @@ public class Customer {
 	 // execute the statement
 	 preparedStmt.execute(); 
 	 con.close(); 
-	 output = "Updated successfully"; 
+	 
+	 String newCustomers = readCustomers(); 
+	 output = "{\"status\":\"success\", \"data\": \"" + 
+	 newCustomers + "\"}"; 
 	 } 
 	 catch (Exception e) 
 	 { 
-	 output = "Error while updating the item."; 
+	 output = "{\"status\":\"error\", \"data\": \"Error while updating the customer.\"}"; 
 	 System.err.println(e.getMessage()); 
 	 } 
 	 return output; 
-	
 	 } 
 	
 	
@@ -196,11 +200,13 @@ public class Customer {
 	 // execute the statement
 	 preparedStmt.execute(); 
 	 con.close(); 
-	 output = "Data Deleted successfully"; 
+	 String newCustomers = readCustomers(); 
+	 output = "{\"status\":\"success\", \"data\": \"" + 
+	 newCustomers + "\"}"; 
 	 } 
 	 catch (Exception e) 
 	 { 
-	 output = "Error while deleting the record."; 
+	 output = "{\"status\":\"error\", \"data\": \"Error while deleting the customer.\"}"; 
 	 System.err.println(e.getMessage()); 
 	 } 
 	 return output; 
