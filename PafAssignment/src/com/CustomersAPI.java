@@ -22,9 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 public class CustomersAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	Customer customerObj = new Customer();
+	
     public CustomersAPI() {
         super();
         
@@ -58,9 +57,10 @@ public class CustomersAPI extends HttpServlet {
 		String outputString = customerObj.updateCustomer(
 				paras.get("customerID").toString(),
 				paras.get("customerName").toString(),
-				paras.get("customerPhone").toString(), 
+				paras.get("customerPhone").toString(),
+				paras.get("customerEmail").toString(), 
 				paras.get("customerUsername").toString(),
-				paras.get("customerPassword").toString(),
+				paras.get("customerPassword").toString());
 				
 
 		response.getWriter().write(outputString);
@@ -95,7 +95,7 @@ public class CustomersAPI extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Map paras = getParasMap(request);
-		String output = customerObj.deleteBuyer(paras.get("customerID").toString());
+		String output = customerObj.deleteCustomer(paras.get("customerID").toString());
 		response.getWriter().write(output);
 		
 	}

@@ -1,4 +1,5 @@
 <%@page import="com.CustomerService"%>
+<%@page import="com.Customer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -98,16 +99,21 @@ li a.active {
 
 	<br>
 	<br>
-<div id="divCustomersGrid">
-          <%
-               Customer customerObj = new Customer(); 
-               out.print(customerObj.readCustomers()); 
-          %>
-</div>
-</div> </div> </div> 
-
-
-
+	<div class="container" id="CustomersGrid">
+		<fieldset>
+			<legend>
+				<b>View Customer Details</b>
+			</legend>
+			<form method="post" action="customer.jsp" class="table table-striped">
+				<%
+					Customer viewCustomer = new Customer();
+					out.print(viewCustomer.readCustomers());
+				%>
+			</form>
+			<br>
+		</fieldset>
+	</div>
+	</div>
 </body>
         
         <!-- Footer-------------------------------------------------------------------------------->
