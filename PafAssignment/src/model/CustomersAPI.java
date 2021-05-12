@@ -1,8 +1,6 @@
-package com;
+package model;
 
-import com.Customer;
-import com.CustomerService;
-
+import service.CustomerService;
 
 import java.io.IOException;
 import java.util.HashMap;

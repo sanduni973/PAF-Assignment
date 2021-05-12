@@ -1,7 +1,4 @@
-package com;
-
-import com.CustomersAPI;
-import com.CustomerService;
+package model;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -58,9 +55,9 @@ public class Customer {
 		 preparedStmt.execute();
 		 con.close();
 
-		 String newCustomers = readCustomers(); 
+		 String newCustomer = readCustomer(); 
 		 output = "{\"status\":\"success\", \"data\": \"" + 
-		 newCustomers + "\"}"; 
+		 newCustomer + "\"}"; 
 		 } 
 		 catch (Exception e) 
 		 { 
@@ -72,7 +69,7 @@ public class Customer {
 	
 	//retrieve query
 	//retrieving records into the grid view
-	public String readCustomers() {
+	public String readCustomer() {
 		
 		String output = "";
 		try
@@ -85,11 +82,13 @@ public class Customer {
 		 
 		 //prepare the html table
 		 output = "<table border='1'><tr><th>Customer ID</th>" 
-		 +"<th>Customer Name</th><th>Customer Phone</th>"
+		 +"<th>Customer Name</th>"
+		 +"<th>Customer Phone</th>"
 		 +"<th>Customer Email</th>"
 		 + "<th>Customer Username</th>" 
 		 + "<th>Customer Password</th>" 
 		 + "<th>Update</th><th>Delete</th></tr>"; 
+		 
 		 String query = "select * from customer"; 
 		 Statement stmt = con.createStatement(); 
 		 ResultSet rs = stmt.executeQuery(query); 
@@ -105,7 +104,32 @@ public class Customer {
 		 String customerUsername = rs.getString("customerUsername");
 		 String customerPassword = rs.getString("customerPassword");
 		 
-		// Add into the html table
+		 // Add into the html table
+		 output += "<tr><td>" + customerName + "</td>"; 
+		 output += "<td>" + customerPhone + "</td>"; 
+		 output += "<td>" + customerEmail + "</td>"; 
+		 output += "<td>" + customerUsername + "</td>"; 
+		 output += "<td>" + customerPassword + "</td>";  					 
+		 
+		 
+		 // buttons
+		 output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
+		 + "<td><input name='btnDelete' type='button' value='Delete' class='btnRemove btn btn-danger' data-itemid='" 
+		 + customerID + "'>" + "</td></tr>";
+	 } 
+	 	 con.close(); 
+	 	 // Complete the html table
+	 	 output += "</table>"; 
+ } 
+ catch (Exception e) 
+ { 
+	 output = "Error while reading the Customer"; 
+	 System.err.println(e.getMessage()); 
+ } 
+	 return output; 
+}
+		 
+	/*	// Add into the html table
 		 output += "<tr><td><input id='hidcustomerIDUpdate' name = 'hidcustomerIDUpdate' type='hidden' value='" + customerID +"'>" +  customerName + "</td>";
 		 output += "<td>" + customerPhone + "</td>";
 		 output += "<td>" + customerEmail + "</td>";
@@ -133,7 +157,7 @@ public class Customer {
 		 } 
 		return output; 
 
-  }
+  }*/
 	 	    
 	//update query
 	//update the records in the table
@@ -155,21 +179,21 @@ public class Customer {
 	 PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
 	 //binding values
-	 preparedStmt.setInt(1, Integer.parseInt(customerID));
-	 preparedStmt.setString(2, customerName); 
-	 preparedStmt.setString(3, customerPhone); 
-	 preparedStmt.setString(4, customerEmail); 
-	 preparedStmt.setString(5, customerUsername); 
-	 preparedStmt.setString(6, customerPassword); 
+	 preparedStmt.setString(1, customerName); 
+	 preparedStmt.setString(2, customerPhone); 
+	 preparedStmt.setString(3, customerEmail);  
+	 preparedStmt.setString(4, customerUsername); 
+	 preparedStmt.setString(5, customerPassword); 
+	 preparedStmt.setInt(6, Integer.parseInt(customerID)); 
 	 
 	 
 	 // execute the statement
 	 preparedStmt.execute(); 
 	 con.close(); 
 	 
-	 String newCustomers = readCustomers(); 
+	 String newCustomer = readCustomer(); 
 	 output = "{\"status\":\"success\", \"data\": \"" + 
-	 newCustomers + "\"}"; 
+	 newCustomer + "\"}"; 
 	 } 
 	 catch (Exception e) 
 	 { 
@@ -199,10 +223,11 @@ public class Customer {
 	 
 	 // execute the statement
 	 preparedStmt.execute(); 
-	 con.close(); 
-	 String newCustomers = readCustomers(); 
+	 con.close();
+	 
+	 String newCustomer = readCustomer(); 
 	 output = "{\"status\":\"success\", \"data\": \"" + 
-	 newCustomers + "\"}"; 
+	 newCustomer + "\"}"; 
 	 } 
 	 catch (Exception e) 
 	 { 

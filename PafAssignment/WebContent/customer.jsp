@@ -1,5 +1,5 @@
-<%@page import="com.CustomerService"%>
-<%@page import="com.Customer"%>
+<%@page import="service.CustomerService"%>
+<%@page import="model.Customer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -107,7 +107,7 @@ li a.active {
 			<form method="post" action="customer.jsp" class="table table-striped">
 				<%
 					Customer viewCustomer = new Customer();
-					out.print(viewCustomer.readCustomers());
+					out.print(viewCustomer.readCustomer());
 				%>
 			</form>
 			<br>

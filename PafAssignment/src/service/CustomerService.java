@@ -1,13 +1,13 @@
-package com;
-
-import com.Customer; 
+package service;
 
 //For REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType;
 
 //For JSON
-import com.google.gson.*; 
+import com.google.gson.*;
+
+import model.Customer;
 
 //For XML
 import org.jsoup.*; 
@@ -23,7 +23,7 @@ Customer customerObj = new Customer();
 @Produces(MediaType.TEXT_HTML) 
 public String readCustomers() 
 { 
-return customerObj.readCustomers(); 
+return customerObj.readCustomer(); 
 } 
 
 //insert operation
