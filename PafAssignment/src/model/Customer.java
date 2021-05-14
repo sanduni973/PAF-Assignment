@@ -104,38 +104,17 @@ public class Customer {
 		 String customerUsername = rs.getString("customerUsername");
 		 String customerPassword = rs.getString("customerPassword");
 		 
-		 // Add into the html table
-		 output += "<tr><td>" + customerName + "</td>"; 
-		 output += "<td>" + customerPhone + "</td>"; 
-		 output += "<td>" + customerEmail + "</td>"; 
-		 output += "<td>" + customerUsername + "</td>"; 
-		 output += "<td>" + customerPassword + "</td>";  					 
-		 
-		 
-		 // buttons
-		 output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
-		 + "<td><input name='btnDelete' type='button' value='Delete' class='btnRemove btn btn-danger' data-itemid='" 
-		 + customerID + "'>" + "</td></tr>";
-	 } 
-	 	 con.close(); 
-	 	 // Complete the html table
-	 	 output += "</table>"; 
- } 
- catch (Exception e) 
- { 
-	 output = "Error while reading the Customer"; 
-	 System.err.println(e.getMessage()); 
- } 
-	 return output; 
-}
-		 
-	/*	// Add into the html table
-		 output += "<tr><td><input id='hidcustomerIDUpdate' name = 'hidcustomerIDUpdate' type='hidden' value='" + customerID +"'>" +  customerName + "</td>";
+
+		//output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='"+ customerID +"'></td>";
+		// Add into the html table
+	//	 output += "<tr><td><input id='hidcustomerIDUpdate'   value='" + customerID +"'></td>";
+	     output += "<td>" + customerID + "</td>";
+		 output += "<td>" + customerName + "</td>";
 		 output += "<td>" + customerPhone + "</td>";
 		 output += "<td>" + customerEmail + "</td>";
 		 output += "<td>" + customerUsername + "</td>";
 		 output += "<td>" + customerPassword + "</td>";
-		 
+				 
 		 
 		 //creating action buttons
 		 output += "<td><input name='btnUpdate' " 
@@ -157,8 +136,7 @@ public class Customer {
 		 } 
 		return output; 
 
-  }*/
-	 	    
+  }	 	    
 	//update query
 	//update the records in the table
 	public String updateCustomer(String customerID, String customerName,String customerPhone, String customerEmail, String customerUsername, String customerPassword)

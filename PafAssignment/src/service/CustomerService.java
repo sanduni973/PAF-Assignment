@@ -1,11 +1,19 @@
 package service;
 
 //For REST Service
-import javax.ws.rs.*; 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 //For JSON
-import com.google.gson.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import model.Customer;
 
@@ -17,13 +25,14 @@ import org.jsoup.nodes.Document;
 @Path("/Customer") 
 public class CustomerService 
 { 
-Customer customerObj = new Customer(); 
+	Customer customerObj = new Customer(); 
+	
 @GET
 @Path("/") 
 @Produces(MediaType.TEXT_HTML) 
 public String readCustomers() 
 { 
-return customerObj.readCustomer(); 
+	return customerObj.readCustomer(); 
 } 
 
 //insert operation
@@ -72,7 +81,7 @@ public String deleteCustomer(String customerData)
 //Convert the input string to an XML document
  Document doc = Jsoup.parse(customerData, "", Parser.xmlParser()); 
  
-//Read the value from the element <itemID>
+//Read the value from the element <customerID>
  String customerID = doc.select("customerID").text(); 
  String output = customerObj.deleteCustomer(customerID); 
 return output; 

@@ -2,9 +2,7 @@
 <%@page import="model.Customer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-
-
+	
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,7 +51,7 @@ li a.active {
 			<link rel="stylesheet" href="Views/bootstrap.min.css">
 			<script src="Components/jquery-3.2.1.min.js"></script>
 			<script src="Components/customer.js"></script>
-
+			  
 </head>
 			<body>
 			<!-- Navigation Bar -->
@@ -90,7 +88,7 @@ li a.active {
 		   <br>
 <input id="btnSave" name="btnSave" type="button" value="Save" 
  class="btn btn-primary">
-<input type="hidden" id="hidcustomerIDSave" name="hidcustomerIDSave" value="">
+<input type="hidden" id="hidCustomerIDSave" name="hidCustomerIDSave" value="">
 </form><br><br>
 
 	<div id="alertSuccess" class="alert alert-success"></div>
@@ -114,45 +112,6 @@ li a.active {
 		</fieldset>
 	</div>
 	</div>
-</body>
-        
-        <!-- Footer-------------------------------------------------------------------------------->
-        <footer class="py-5 s footer">
-          <div class="container-fluid">
-              
-            <div class="row" >
-              <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="card" style="background-color: black;">
-                  <div class="card-body">
-                    <h5 class="card-title" style="color:white; font-weight: bolder; font-size: 3.5rem;"></h5>
-                    <p class="card-text" style="color: white; font-size: 1rem;"><span style="font-weight: bolder;color: yellow;">
-                      </p>
-                      
-                  
-        
-                  </div>
-                </div>
-              </div>
-  
-              <div class="col-lg-6 col-md-12 col-sm-12">
-  
-                <img class="d-block img-fluid footer-gb" src="images/gb.jpg"/>
-              
-              </div>
-  
-          </div>
-          
-          </div>
-         
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://kit.fontawesome.com/341a24681e.js" crossorigin="anonymous"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <script src="javaScript/index.js"></script>
-        
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     </body>
 </html>

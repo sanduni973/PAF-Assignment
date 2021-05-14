@@ -65,7 +65,14 @@ public class CustomersAPI extends HttpServlet {
 		
 	}
 
-
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Map paras = getParasMap(request);
+		String output = customerObj.deleteCustomer(paras.get("customerID").toString());
+		response.getWriter().write(output);
+		
+	}
+	
 	// Convert request parameters to a Map
 	private static Map getParasMap(HttpServletRequest request) {
 		
@@ -86,16 +93,6 @@ public class CustomersAPI extends HttpServlet {
 		  }
 		
 		return map;
-	}
-	
-
-
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Map paras = getParasMap(request);
-		String output = customerObj.deleteCustomer(paras.get("customerID").toString());
-		response.getWriter().write(output);
-		
 	}
 
 }
